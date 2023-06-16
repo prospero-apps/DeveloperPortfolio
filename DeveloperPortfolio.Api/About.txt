@@ -1,0 +1,15 @@
+﻿The steps to create this solution:
+
+1. Create the Balzor WebAssembly project (later on referred to as Web).
+
+2. Create the ASP.NET Core Web API project (later on referred to as Api).
+
+3. Add the Entities folder to Api.
+
+4. Add the following classes to the Entities folder in Api:
+	- Project
+	- Category
+	- Tech
+	- Link
+	- ProjectTechRelation (used to associate projects with the technologies it uses)
+	- ProjectLinkRelation (used to associate projects with the links that lead to Github, live pages, etc.)
