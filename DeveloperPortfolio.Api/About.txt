@@ -12,4 +12,15 @@
 	- Tech
 	- Link
 	- ProjectTechRelation (used to associate projects with the technologies it uses)
-	- ProjectLinkRelation (used to associate projects with the links that lead to Github, live pages, etc.)
+
+5. Add solution to version control (Git) and create the DeveloperPortfolio repo on Github.
+
+6. Install the following packages in the Dependencies folder in Api:
+	- Microsoft.EntityFrameworkCore.SqlServer 
+	- Microsoft.EntityFrameworkCore.Tools
+
+7. Create the Data folder in Api and add the DeveloperPortfolioDbContext class that inherits DbContext to it.
+
+8. Override the OnModelCreating method in the DeveloperPortfolioDbContext class to seed the database.
+
+9. 
