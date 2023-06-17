@@ -34,3 +34,6 @@
     Name it DeveloperPortfolio.Models (later on referred to as Models).
 
 13. Create the Dtos folder in Models and add the Data Transfer Object (dto) classes to it.
+
+14. Add the Repositories folder to Api. Create the Contracts folder in it and add the IProjectRepository 
+    interface to it. Implement the ProjectRepository class that implements the interface.
