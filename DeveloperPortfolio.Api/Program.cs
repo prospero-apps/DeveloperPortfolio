@@ -1,3 +1,6 @@
+using DeveloperPortfolio.Api.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace DeveloperPortfolio.Api
 {
     public class Program
@@ -12,6 +15,10 @@ namespace DeveloperPortfolio.Api
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContextPool<DeveloperPortfolioDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DeveloperPortfolioConnection"))
+            );
 
             var app = builder.Build();
 

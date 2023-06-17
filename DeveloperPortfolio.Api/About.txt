@@ -22,5 +22,10 @@
 7. Create the Data folder in Api and add the DeveloperPortfolioDbContext class that inherits DbContext to it.
 
 8. Override the OnModelCreating method in the DeveloperPortfolioDbContext class to seed the database.
+   Also create a DbSet property for each entity to let Entity Framework know about them.
 
-9. 
+9. Register the DeveloperPortfolioDbContext for dependency injection in the Program class.
+
+10. Create the DeveloperPortfolioDB database in SQLServer and get the connection string.
+
+11. Run a migration and update the database to add the tables to the database.
