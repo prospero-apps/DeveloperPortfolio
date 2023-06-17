@@ -29,3 +29,8 @@
 10. Create the DeveloperPortfolioDB database in SQLServer and get the connection string.
 
 11. Run a migration and update the database to add the tables to the database.
+
+12. Add a Class Library project to the solution for the Data Transfer Object (dto) classes.
+    Name it DeveloperPortfolio.Models (later on referred to as Models).
+
+13. Create the Dtos folder in Models and add the Data Transfer Object (dto) classes to it.

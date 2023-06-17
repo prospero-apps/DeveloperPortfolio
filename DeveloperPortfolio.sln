@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33712.159
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeveloperPortfolio.Web", "DeveloperPortfolio.Web\DeveloperPortfolio.Web.csproj", "{9BBA37AE-DBF1-40CF-8959-ABD8801CAE46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeveloperPortfolio.Web", "DeveloperPortfolio.Web\DeveloperPortfolio.Web.csproj", "{9BBA37AE-DBF1-40CF-8959-ABD8801CAE46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeveloperPortfolio.Api", "DeveloperPortfolio.Api\DeveloperPortfolio.Api.csproj", "{A7165C62-50AE-482A-AA11-23D28EBEECE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeveloperPortfolio.Api", "DeveloperPortfolio.Api\DeveloperPortfolio.Api.csproj", "{A7165C62-50AE-482A-AA11-23D28EBEECE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeveloperPortfolio.Models", "DeveloperPortfolio.Models\DeveloperPortfolio.Models.csproj", "{FEC088B3-3FA9-4C94-874F-EFF76BF09DBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A7165C62-50AE-482A-AA11-23D28EBEECE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7165C62-50AE-482A-AA11-23D28EBEECE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7165C62-50AE-482A-AA11-23D28EBEECE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEC088B3-3FA9-4C94-874F-EFF76BF09DBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEC088B3-3FA9-4C94-874F-EFF76BF09DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEC088B3-3FA9-4C94-874F-EFF76BF09DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEC088B3-3FA9-4C94-874F-EFF76BF09DBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
