@@ -37,3 +37,12 @@
 
 14. Add the Repositories folder to Api. Create the Contracts folder in it and add the IProjectRepository 
     interface to it. Implement the ProjectRepository class that implements the interface.
+
+15. Register the ProjectRepository class for dependency injection in the Program class.
+
+16. Add Models to the Dependencies folder in Api.
+
+17. Add and implement the ProjectController class.
+
+18. Create the Extensions folder in Api and add the DtoConversions class to it with methods that will be used
+	to convert data to dtos.

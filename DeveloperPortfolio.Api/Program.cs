@@ -1,4 +1,6 @@
 using DeveloperPortfolio.Api.Data;
+using DeveloperPortfolio.Api.Repositories;
+using DeveloperPortfolio.Api.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 
 namespace DeveloperPortfolio.Api
@@ -19,6 +21,8 @@ namespace DeveloperPortfolio.Api
             builder.Services.AddDbContextPool<DeveloperPortfolioDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DeveloperPortfolioConnection"))
             );
+
+            builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 
             var app = builder.Build();
 

@@ -44,10 +44,17 @@ namespace DeveloperPortfolio.Api.Repositories
             return project;
         }
 
+        public async Task<IEnumerable<Link>> GetAllLinks()
+        {
+            var links = await this.developerPortfolioDbContext.Links.ToListAsync();
+            return links;
+        }
+
         public async Task<IEnumerable<Link>> GetProjectLinks(int projectId)
         {
             var links = await this.developerPortfolioDbContext.Links
                                   .Where(l => l.ProjectId == projectId).ToListAsync();
+            
             return links;
         }
 
@@ -83,6 +90,12 @@ namespace DeveloperPortfolio.Api.Repositories
                                   .Where(t => techIds.Contains(t.Id)).ToListAsync();
 
             return techs;
+        }
+
+        public async Task<IEnumerable<ProjectTechRelation>> GetAllProjectTechRelations()
+        {
+            var relations = await this.developerPortfolioDbContext.ProjectTechRelations.ToListAsync();
+            return relations;
         }
     }
 }

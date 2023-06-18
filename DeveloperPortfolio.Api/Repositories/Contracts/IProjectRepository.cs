@@ -10,8 +10,10 @@ namespace DeveloperPortfolio.Api.Repositories.Contracts
         Task<IEnumerable<Category>> GetAllCategories();
         Task<IEnumerable<Tech>> GetAllTechs();
         Task<IEnumerable<Tech>> GetProjectTechs(int projectId);
+        Task<IEnumerable<Link>> GetAllLinks();
         Task<IEnumerable<Link>> GetProjectLinks(int projectId);
         Task<Project> GetProject(int id);
         Task<Category> GetCategory(int id);
+        Task<IEnumerable<ProjectTechRelation>> GetAllProjectTechRelations();
     }
 }
