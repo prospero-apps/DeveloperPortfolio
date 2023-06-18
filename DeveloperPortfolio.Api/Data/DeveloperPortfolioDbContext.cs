@@ -933,20 +933,24 @@ namespace DeveloperPortfolio.Api.Data
             modelBuilder.Entity<ProjectTechRelation>().HasData(
                 new ProjectTechRelation { Id = 32, ProjectId = 19, TechId = 8 });
 
+            // Python in Science - Introduction to numpy - Python
+            modelBuilder.Entity<ProjectTechRelation>().HasData(
+                new ProjectTechRelation { Id = 33, ProjectId = 20, TechId = 8 });
+
             // Advanced English - Learn Over 400 Phrasal Verbs - English
             modelBuilder.Entity<ProjectTechRelation>().HasData(
-                new ProjectTechRelation { Id = 33, ProjectId = 20, TechId = 14 });
+                new ProjectTechRelation { Id = 34, ProjectId = 21, TechId = 14 });
 
             // Your Panda3D Magazine - Python, Blender
             modelBuilder.Entity<ProjectTechRelation>().HasData(
-                new ProjectTechRelation { Id = 34, ProjectId = 21, TechId = 8 });
+                new ProjectTechRelation { Id = 35, ProjectId = 22, TechId = 8 });
 
             modelBuilder.Entity<ProjectTechRelation>().HasData(
-                new ProjectTechRelation { Id = 35, ProjectId = 22, TechId = 8 });
+                new ProjectTechRelation { Id = 36, ProjectId = 22, TechId = 9 });
 
             // Your American English Magazine - English
             modelBuilder.Entity<ProjectTechRelation>().HasData(
-                new ProjectTechRelation { Id = 36, ProjectId = 23, TechId = 14 });
+                new ProjectTechRelation { Id = 37, ProjectId = 23, TechId = 14 });
         }
 
         public DbSet<Project> Projects { get; set; }

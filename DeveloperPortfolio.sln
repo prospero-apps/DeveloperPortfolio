@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeveloperPortfolio.Web", "D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeveloperPortfolio.Api", "DeveloperPortfolio.Api\DeveloperPortfolio.Api.csproj", "{A7165C62-50AE-482A-AA11-23D28EBEECE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeveloperPortfolio.Models", "DeveloperPortfolio.Models\DeveloperPortfolio.Models.csproj", "{FEC088B3-3FA9-4C94-874F-EFF76BF09DBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeveloperPortfolio.Models", "DeveloperPortfolio.Models\DeveloperPortfolio.Models.csproj", "{FEC088B3-3FA9-4C94-874F-EFF76BF09DBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

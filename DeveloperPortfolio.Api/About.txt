@@ -46,3 +46,31 @@
 
 18. Create the Extensions folder in Api and add the DtoConversions class to it with methods that will be used
 	to convert data to dtos.
+
+19. In Web in the Program class set the BaseAddress of the HttpClient to https://localhost:7110/. 
+	This is where the server runs locally.
+
+20. In Web create the Services folder for classes to handle interactions with the Web API component.
+
+21. Inside the Services folder create the Contracts folder and add the IProjectService to it.
+
+22. Create the ProjectService class in the Services folder that implements the IProjectService interface.
+
+23. Implement the GetAllProjects method in ProjectService to retrieve all the projects from server to client.
+
+24. Add the Projects.razor and ProjectsBase classes to the Pages folder in Web. This is going to be the page
+	where all projects will be displayed.
+
+25. Inject IProjectService to ProjectsBase. Also, register IProjectService for dependecy injection 
+	in the Program class.
+
+26. In ProjectsBase override the OnInitializedAsync method to retrieve the Projects data.
+
+27. Implement the Project.razor component.
+
+28. Add CORS policy code to the Program class in Api.
+
+29. Add a migration and update the database to fix some project tech relations that were entered wrong
+	the first time.
+
+30. 

@@ -2,6 +2,7 @@ using DeveloperPortfolio.Api.Data;
 using DeveloperPortfolio.Api.Repositories;
 using DeveloperPortfolio.Api.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
 
 namespace DeveloperPortfolio.Api
 {
@@ -32,6 +33,12 @@ namespace DeveloperPortfolio.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseCors(policy =>
+                policy.WithOrigins("http://localhost:7295", "https://localhost:7295")
+                .AllowAnyMethod()
+                .WithHeaders(HeaderNames.ContentType)
+            );
 
             app.UseHttpsRedirection();
 
