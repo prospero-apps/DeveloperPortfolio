@@ -82,4 +82,6 @@
 
 33. Create the ProjectDetails razor component and the corresponding base class.
 
-34. 
+34. Create the DisplayError razor component.
+
+35. 

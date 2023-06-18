@@ -7,7 +7,7 @@
 }
 else if (ErrorMessage != null)
 {
-    <h3 class="text-danger">@ErrorMessage</h3>
+    <DisplayError ErrorMessage="@ErrorMessage"/>
 }
 else
 {
@@ -40,8 +40,6 @@ else
                     </div>
                 }
             </div>
-
-
         </div>
     </div>
 }
