@@ -78,6 +78,8 @@
 
 31. Add a style sheet to the DisplayProjects component.
 
-32. Implement getting a single project.
+32. Implement getting a single project (repository, controller, service).
 
-33. 
+33. Create the ProjectDetails razor component and the corresponding base class.
+
+34. 
