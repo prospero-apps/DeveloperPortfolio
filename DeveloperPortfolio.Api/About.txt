@@ -76,4 +76,8 @@
 30. Abstract the razor code for projects display into a separate Blazor component. To do that add the 
 	DisplayProjects component and the DisplayProjectsBase class.
 
-31. 
+31. Add a style sheet to the DisplayProjects component.
+
+32. Implement getting a single project.
+
+33. 

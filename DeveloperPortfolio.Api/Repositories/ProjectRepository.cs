@@ -16,19 +16,19 @@ namespace DeveloperPortfolio.Api.Repositories
 
         public async Task<IEnumerable<Category>> GetAllCategories()
         {
-            var categories = await this.developerPortfolioDbContext.Categories.ToListAsync();
+            var categories = await developerPortfolioDbContext.Categories.ToListAsync();
             return categories;
         }
 
         public async Task<IEnumerable<Project>> GetAllProjects()
         {
-            var projects = await this.developerPortfolioDbContext.Projects.ToListAsync();
+            var projects = await developerPortfolioDbContext.Projects.ToListAsync();
             return projects;
         }
 
         public async Task<IEnumerable<Tech>> GetAllTechs()
         {
-            var techs = await this.developerPortfolioDbContext.Techs.ToListAsync();
+            var techs = await developerPortfolioDbContext.Techs.ToListAsync();
             return techs;
         }
 
@@ -40,19 +40,19 @@ namespace DeveloperPortfolio.Api.Repositories
 
         public async Task<Project> GetProject(int id)
         {
-            var project = await this.developerPortfolioDbContext.Projects.SingleOrDefaultAsync(p => p.Id == id);
+            var project = await developerPortfolioDbContext.Projects.SingleOrDefaultAsync(p => p.Id == id);
             return project;
         }
 
         public async Task<IEnumerable<Link>> GetAllLinks()
         {
-            var links = await this.developerPortfolioDbContext.Links.ToListAsync();
+            var links = await developerPortfolioDbContext.Links.ToListAsync();
             return links;
         }
 
         public async Task<IEnumerable<Link>> GetProjectLinks(int projectId)
         {
-            var links = await this.developerPortfolioDbContext.Links
+            var links = await developerPortfolioDbContext.Links
                                   .Where(l => l.ProjectId == projectId).ToListAsync();
             
             return links;
@@ -60,7 +60,7 @@ namespace DeveloperPortfolio.Api.Repositories
 
         public async Task<IEnumerable<Project>> GetProjectsByCategory(int id)
         {
-            var projects = await this.developerPortfolioDbContext.Projects
+            var projects = await developerPortfolioDbContext.Projects
                                      .Where(p => p.CategoryId == id).ToListAsync();
 
             return projects;
@@ -68,12 +68,12 @@ namespace DeveloperPortfolio.Api.Repositories
 
         public async Task<IEnumerable<Project>> GetProjectsByTech(int id)
         {
-            var relations = await this.developerPortfolioDbContext.ProjectTechRelations
+            var relations = await developerPortfolioDbContext.ProjectTechRelations
                                       .Where(r => r.TechId == id).ToListAsync();
 
             var projectIds = relations.Select(r => r.ProjectId).ToList();
 
-            var projects = await this.developerPortfolioDbContext.Projects
+            var projects = await developerPortfolioDbContext.Projects
                                      .Where(p => projectIds.Contains(p.Id)).ToListAsync();
 
             return projects;
@@ -81,12 +81,12 @@ namespace DeveloperPortfolio.Api.Repositories
 
         public async Task<IEnumerable<Tech>> GetProjectTechs(int projectId)
         {
-            var relations = await this.developerPortfolioDbContext.ProjectTechRelations
+            var relations = await developerPortfolioDbContext.ProjectTechRelations
                                       .Where(r => r.ProjectId == projectId).ToListAsync();
 
             var techIds = relations.Select(r => r.TechId).ToList();
 
-            var techs = await this.developerPortfolioDbContext.Techs
+            var techs = await developerPortfolioDbContext.Techs
                                   .Where(t => techIds.Contains(t.Id)).ToListAsync();
 
             return techs;
@@ -94,7 +94,7 @@ namespace DeveloperPortfolio.Api.Repositories
 
         public async Task<IEnumerable<ProjectTechRelation>> GetAllProjectTechRelations()
         {
-            var relations = await this.developerPortfolioDbContext.ProjectTechRelations.ToListAsync();
+            var relations = await developerPortfolioDbContext.ProjectTechRelations.ToListAsync();
             return relations;
         }
     }

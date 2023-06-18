@@ -22,11 +22,11 @@ namespace DeveloperPortfolio.Api.Controllers
         {
             try
             {
-                var projects = await this.projectRepository.GetAllProjects();
-                var categories = await this.projectRepository.GetAllCategories();
-                var techs = await this.projectRepository.GetAllTechs();
-                var links = await this.projectRepository.GetAllLinks();
-                var relations = await this.projectRepository.GetAllProjectTechRelations();
+                var projects = await projectRepository.GetAllProjects();
+                var categories = await projectRepository.GetAllCategories();
+                var techs = await projectRepository.GetAllTechs();
+                var links = await projectRepository.GetAllLinks();
+                var relations = await projectRepository.GetAllProjectTechRelations();
 
                 if (projects == null || categories == null || techs == null || links == null || relations == null)
                 {
@@ -36,6 +36,36 @@ namespace DeveloperPortfolio.Api.Controllers
                 {
                     var projectDtos = projects.ConvertToDto(categories, techs, links, relations);
                     return Ok(projectDtos);
+                }
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving data from the database");
+            }
+        }
+
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<ProjectDto>> GetProject(int id)
+        {
+            try
+            {
+                var project = await projectRepository.GetProject(id);
+
+                if (project == null)
+                {
+                    return BadRequest();
+                }
+                else
+                {
+                    var category = await projectRepository.GetCategory(project.CategoryId);
+                    var techs = await projectRepository.GetProjectTechs(project.Id);
+                    var links = await projectRepository.GetProjectLinks(project.Id);
+                    var relations = await projectRepository.GetAllProjectTechRelations();
+
+
+                    var projectDto = project.ConvertToDto(category, techs, links, relations);
+                    return Ok(projectDto);
                 }
             }
             catch (Exception)
