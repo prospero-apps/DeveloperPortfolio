@@ -73,4 +73,7 @@
 29. Add a migration and update the database to fix some project tech relations that were entered wrong
 	the first time.
 
-30. 
+30. Abstract the razor code for projects display into a separate Blazor component. To do that add the 
+	DisplayProjects component and the DisplayProjectsBase class.
+
+31. 

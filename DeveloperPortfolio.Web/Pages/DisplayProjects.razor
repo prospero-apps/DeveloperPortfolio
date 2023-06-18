@@ -1,0 +1,30 @@
+﻿@inherits DisplayProjectsBase
+
+@foreach (var item in Projects)
+{
+    <div class="col-md-3 mb-2">
+        <a href="#">
+            <div class="card">
+                <img class="img-thumbnail" src="@item.ImageUrl">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">
+                        @item.Name
+                    </h5>
+                    @foreach (var tech in item.Techs)
+                    {
+                        <div>
+                            <i class="@tech.Icon" />
+                        </div>
+                    }
+                    <p>@item.Description</p>
+                    @foreach (var link in item.Links)
+                    {
+                        <div>
+                            <i class="@link.Icon" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </a>
+    </div>
+}

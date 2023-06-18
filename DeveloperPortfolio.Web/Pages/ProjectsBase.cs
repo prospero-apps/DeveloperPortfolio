@@ -15,5 +15,18 @@ namespace DeveloperPortfolio.Web.Pages
         {
             Projects = await ProjectService.GetAllProjects();
         }
+
+        protected IOrderedEnumerable<IGrouping<int, ProjectDto>> GetGroupedProjects()
+        {
+            return from project in Projects
+                   group project by project.CategoryId into projectGroup
+                   orderby projectGroup.Key
+                   select projectGroup;
+        }
+
+        protected string GetCategoryName(IGrouping<int, ProjectDto> groupedProjectDtos)
+        {
+            return groupedProjectDtos.FirstOrDefault(p => p.CategoryId == groupedProjectDtos.Key).CategoryName;
+        }
     }
 }
