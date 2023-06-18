@@ -84,4 +84,4 @@
 
 34. Create the DisplayError razor component.
 
-35. 
+35. Create the LoadingSpinner razor component.
