@@ -1,7 +1,7 @@
 ﻿using DeveloperPortfolio.Models.Dtos;
 using Microsoft.AspNetCore.Components;
 
-namespace DeveloperPortfolio.Web.Pages
+namespace DeveloperPortfolio.Web.Components
 {
     public class DisplayProjectsBase : ComponentBase
     {

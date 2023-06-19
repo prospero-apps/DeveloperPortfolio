@@ -85,3 +85,8 @@
 34. Create the DisplayError razor component.
 
 35. Create the LoadingSpinner razor component.
+
+36. Add the Components folder to Web and move to it the components that are not going to be pages.
+	Adjust the namespaces in the page components.
+
+37. 
