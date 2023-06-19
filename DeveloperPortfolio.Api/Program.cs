@@ -24,6 +24,8 @@ namespace DeveloperPortfolio.Api
             );
 
             builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<ITechRepository, TechRepository>();
 
             var app = builder.Build();
 

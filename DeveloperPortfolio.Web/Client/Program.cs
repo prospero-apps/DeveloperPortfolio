@@ -17,6 +17,8 @@ namespace DeveloperPortfolio.Web
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7110/") });
 
             builder.Services.AddScoped<IProjectService, ProjectService>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<ITechService, TechService>();
 
             await builder.Build().RunAsync();
         }

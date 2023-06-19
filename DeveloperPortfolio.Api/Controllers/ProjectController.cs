@@ -11,10 +11,15 @@ namespace DeveloperPortfolio.Api.Controllers
     public class ProjectController : ControllerBase
     {
         private readonly IProjectRepository projectRepository;
+        private readonly ICategoryRepository categoryRepository;
+        private readonly ITechRepository techRepository;        
 
-        public ProjectController(IProjectRepository projectRepository)
+        public ProjectController(IProjectRepository projectRepository, ICategoryRepository categoryRepository,
+            ITechRepository techRepository)
         {
             this.projectRepository = projectRepository;
+            this.categoryRepository = categoryRepository;
+            this.techRepository = techRepository;
         }
 
         [HttpGet]
@@ -23,8 +28,8 @@ namespace DeveloperPortfolio.Api.Controllers
             try
             {
                 var projects = await projectRepository.GetAllProjects();
-                var categories = await projectRepository.GetAllCategories();
-                var techs = await projectRepository.GetAllTechs();
+                var categories = await categoryRepository.GetAllCategories();
+                var techs = await techRepository.GetAllTechs();
                 var links = await projectRepository.GetAllLinks();
                 var relations = await projectRepository.GetAllProjectTechRelations();
 
@@ -38,10 +43,9 @@ namespace DeveloperPortfolio.Api.Controllers
                     return Ok(projectDtos);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
@@ -58,20 +62,18 @@ namespace DeveloperPortfolio.Api.Controllers
                 }
                 else
                 {
-                    var category = await projectRepository.GetCategory(project.CategoryId);
+                    var category = await categoryRepository.GetCategory(project.CategoryId);
                     var techs = await projectRepository.GetProjectTechs(project.Id);
                     var links = await projectRepository.GetProjectLinks(project.Id);
                     var relations = await projectRepository.GetAllProjectTechRelations();
-
 
                     var projectDto = project.ConvertToDto(category, techs, links, relations);
                     return Ok(projectDto);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
     }

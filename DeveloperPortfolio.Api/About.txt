@@ -87,6 +87,15 @@
 35. Create the LoadingSpinner razor component.
 
 36. Add the Components folder to Web and move to it the components that are not going to be pages.
-	Adjust the namespaces in the page components.
+	Add the using directive to _Imports.razor.
 
-37. 
+37. Add the CreateCategory method to IProjectRepository and implement it in ProjectRepository.
+
+38. Create the category and tech repositories, controllers and services and move the code that respectively
+	concerns categories and techs to them. Also add code to retrieve all categories/techs and a single
+	category/tech.
+
+39. 
+
+
+

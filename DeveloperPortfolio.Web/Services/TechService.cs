@@ -4,29 +4,29 @@ using System.Net.Http.Json;
 
 namespace DeveloperPortfolio.Web.Services
 {
-    public class ProjectService : IProjectService
+    public class TechService : ITechService
     {
         private readonly HttpClient httpClient;
 
-        public ProjectService(HttpClient httpClient)
+        public TechService(HttpClient httpClient)
         {
             this.httpClient = httpClient;
         }
-                
-        public async Task<IEnumerable<ProjectDto>> GetAllProjects()
+
+        public async Task<IEnumerable<TechDto>> GetAllTechs()
         {
             try
             {
-                var response = await httpClient.GetAsync("api/Project");
+                var response = await httpClient.GetAsync("api/Tech");
 
                 if (response.IsSuccessStatusCode)
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
                     {
-                        return Enumerable.Empty<ProjectDto>();
+                        return Enumerable.Empty<TechDto>();
                     }
 
-                    return await response.Content.ReadFromJsonAsync<IEnumerable<ProjectDto>>();
+                    return await response.Content.ReadFromJsonAsync<IEnumerable<TechDto>>();
                 }
                 else
                 {
@@ -39,21 +39,21 @@ namespace DeveloperPortfolio.Web.Services
                 throw;
             }
         }
-                
-        public async Task<ProjectDto> GetProject(int id)
+
+        public async Task<TechDto> GetTech(int id)
         {
             try
             {
-                var response = await httpClient.GetAsync($"api/Project/{id}");
+                var response = await httpClient.GetAsync($"api/Tech/{id}");
 
                 if (response.IsSuccessStatusCode)
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
                     {
-                        return default(ProjectDto);
+                        return default(TechDto);
                     }
 
-                    return await response.Content.ReadFromJsonAsync<ProjectDto>();
+                    return await response.Content.ReadFromJsonAsync<TechDto>();
                 }
                 else
                 {

@@ -1,6 +1,7 @@
 ﻿using DeveloperPortfolio.Api.Data;
 using DeveloperPortfolio.Api.Entities;
 using DeveloperPortfolio.Api.Repositories.Contracts;
+using DeveloperPortfolio.Models.Dtos;
 using Microsoft.EntityFrameworkCore;
 
 namespace DeveloperPortfolio.Api.Repositories
@@ -13,31 +14,13 @@ namespace DeveloperPortfolio.Api.Repositories
         {
             this.developerPortfolioDbContext = developerPortfolioDbContext;
         }
-
-        public async Task<IEnumerable<Category>> GetAllCategories()
-        {
-            var categories = await developerPortfolioDbContext.Categories.ToListAsync();
-            return categories;
-        }
-
+         
         public async Task<IEnumerable<Project>> GetAllProjects()
         {
             var projects = await developerPortfolioDbContext.Projects.ToListAsync();
             return projects;
         }
-
-        public async Task<IEnumerable<Tech>> GetAllTechs()
-        {
-            var techs = await developerPortfolioDbContext.Techs.ToListAsync();
-            return techs;
-        }
-
-        public async Task<Category> GetCategory(int id)
-        {
-            var category = await developerPortfolioDbContext.Categories.SingleOrDefaultAsync(c =>  c.Id == id);
-            return category;
-        }
-
+                
         public async Task<Project> GetProject(int id)
         {
             var project = await developerPortfolioDbContext.Projects.SingleOrDefaultAsync(p => p.Id == id);
@@ -96,6 +79,6 @@ namespace DeveloperPortfolio.Api.Repositories
         {
             var relations = await developerPortfolioDbContext.ProjectTechRelations.ToListAsync();
             return relations;
-        }
+        }        
     }
 }

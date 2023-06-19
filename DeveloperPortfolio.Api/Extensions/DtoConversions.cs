@@ -5,6 +5,7 @@ namespace DeveloperPortfolio.Api.Extensions
 {
     public static class DtoConversions
     {
+        // Projects
         public static IEnumerable<ProjectDto> ConvertToDto(this IEnumerable<Project> projects,
             IEnumerable<Category> categories, IEnumerable<Tech> techs, IEnumerable<Link> links,
             IEnumerable<ProjectTechRelation> relations)
@@ -75,6 +76,50 @@ namespace DeveloperPortfolio.Api.Extensions
                              Icon = link.Icon,
                              ProjectId = project.Id
                          }).ToList()
+            };
+        }
+
+        // Categories
+        public static IEnumerable<CategoryDto> ConvertToDto(this IEnumerable<Category> categories)
+        {
+            return (from category in categories
+                    select new CategoryDto
+                    {
+                        Id = category.Id,
+                        Name = category.Name,
+                        Icon = category.Icon
+                    }).ToList();
+        }
+
+        public static CategoryDto ConvertToDto(this Category category)
+        {
+            return new CategoryDto
+            {
+                Id = category.Id,
+                Name = category.Name,
+                Icon = category.Icon
+            };
+        }
+
+        // Techs
+        public static IEnumerable<TechDto> ConvertToDto(this IEnumerable<Tech> techs)
+        {
+            return (from tech in techs
+                    select new TechDto
+                    {
+                        Id = tech.Id,
+                        Name = tech.Name,
+                        Icon = tech.Icon
+                    }).ToList();
+        }
+
+        public static TechDto ConvertToDto(this Tech tech)
+        {
+            return new TechDto
+            {
+                Id = tech.Id,
+                Name = tech.Name,
+                Icon = tech.Icon
             };
         }
     }
