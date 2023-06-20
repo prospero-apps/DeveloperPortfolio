@@ -28,26 +28,25 @@ namespace DeveloperPortfolio.Api.Repositories
         }
 
         public async Task<Category> CreateCategory(CategoryDto categoryDto)
-        {
-            throw new NotImplementedException();
-            //if (await CategoryWithThisNameExists(categoryDto.Name) == false)
-            //{
-            //    var item = new Category
-            //    {
-            //        Id = categoryDto.Id,
-            //        Name = categoryDto.Name,
-            //        Icon = categoryDto.Icon
-            //    };
+        {            
+            if (await CategoryWithThisNameExists(categoryDto.Name) == false)
+            {
+                var item = new Category
+                {
+                    Id = categoryDto.Id,
+                    Name = categoryDto.Name,
+                    Icon = categoryDto.Icon
+                };
 
-            //    if (item != null)
-            //    {
-            //        var result = await developerPortfolioDbContext.Categories.AddAsync(item);
-            //        await developerPortfolioDbContext.SaveChangesAsync();
-            //        return result.Entity;
-            //    }
-            //}
+                if (item != null)
+                {
+                    var result = await developerPortfolioDbContext.Categories.AddAsync(item);
+                    await developerPortfolioDbContext.SaveChangesAsync();
+                    return result.Entity;
+                }
+            }
 
-            //return null;
+            return null;
         }
 
         public Task<Category> DeleteCategory(int id)

@@ -67,31 +67,31 @@ namespace DeveloperPortfolio.Web.Services
             }
         }
 
-        //public Task<CategoryDto> CreateCategory(CategoryDto categoryDto)
-        //{
-        //    try
-        //    {
-        //        var response = await httpClient.PostAsJsonAsync($"api/Project/CreateCategory", categoryDto);
+        public async Task<CategoryDto> CreateCategory(CategoryDto categoryDto)
+        {
+            try
+            {
+                var response = await httpClient.PostAsJsonAsync($"api/Category", categoryDto);
 
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-        //            {
-        //                return default(CategoryDto);
-        //            }
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return default(CategoryDto);
+                    }
 
-        //            return await response.Content.ReadFromJsonAsync<CategoryDto>();
-        //        }
-        //        else
-        //        {
-        //            var message = await response.Content.ReadAsStringAsync();
-        //            throw new Exception(message);
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
+                    return await response.Content.ReadFromJsonAsync<CategoryDto>();
+                }
+                else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception(message);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

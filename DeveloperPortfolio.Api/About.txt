@@ -95,7 +95,9 @@
 	concerns categories and techs to them. Also add code to retrieve all categories/techs and a single
 	category/tech.
 
-39. 
+39. Add the CreateCategory page and implement adding a new category in Api and Web.
+
+40. 
 
 
 

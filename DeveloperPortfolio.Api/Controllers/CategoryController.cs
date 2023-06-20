@@ -66,27 +66,26 @@ namespace DeveloperPortfolio.Api.Controllers
             }
         }
 
-        //[HttpPost]
-        //[Route(nameof(CreateCategory))]
-        //public async Task<ActionResult<CategoryDto>> CreateCategory([FromBody] CategoryDto categoryDto)
-        //{
-        //    try
-        //    {
-        //        var newCategory = await projectRepository.CreateCategory(categoryDto);
+        [HttpPost]
+        public async Task<ActionResult<CategoryDto>> CreateCategory([FromBody] CategoryDto categoryDto)
+        {
+            try
+            {
+                var newCategory = await categoryRepository.CreateCategory(categoryDto);
 
-        //        if (newCategory == null)
-        //        {
-        //            return NoContent();
-        //        }
+                if (newCategory == null)
+                {
+                    return NoContent();
+                }
 
-        //        var newCategoryDto = newCategory.ConvertToDto();
+                var newCategoryDto = newCategory.ConvertToDto();
 
-        //        return CreatedAtAction(nameof(GetCategory), new { id = newCategoryDto.Id }, newCategoryDto);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-        //    }
-        //}
+                return CreatedAtAction(nameof(GetCategory), new { id = newCategoryDto.Id }, newCategoryDto);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
     }    
 }
