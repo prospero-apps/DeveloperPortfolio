@@ -64,5 +64,27 @@ namespace DeveloperPortfolio.Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
+
+        [HttpPost]
+        public async Task<ActionResult<TechDto>> CreateTech([FromBody] TechDto techDto)
+        {
+            try
+            {
+                var newTech = await techRepository.CreateTech(techDto);
+
+                if (newTech == null)
+                {
+                    return NoContent();
+                }
+
+                var newTechDto = newTech.ConvertToDto();
+
+                return CreatedAtAction(nameof(GetTech), new { id = newTechDto.Id }, newTechDto);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
     }
 }

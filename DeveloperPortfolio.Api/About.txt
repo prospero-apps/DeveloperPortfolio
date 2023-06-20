@@ -97,7 +97,9 @@
 
 39. Add the CreateCategory page and implement adding a new category in Api and Web.
 
-40. 
+40. Add the CreateTech page and implement adding a new tech in Api and Web.
+
+41. 
 
 
 

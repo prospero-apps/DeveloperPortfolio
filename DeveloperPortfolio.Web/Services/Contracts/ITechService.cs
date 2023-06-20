@@ -6,5 +6,6 @@ namespace DeveloperPortfolio.Web.Services.Contracts
     {
         Task<IEnumerable<TechDto>> GetAllTechs();
         Task<TechDto> GetTech(int id);
+        Task<TechDto> CreateTech(TechDto techDto);
     }
 }

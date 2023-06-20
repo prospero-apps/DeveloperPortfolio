@@ -4,18 +4,18 @@ using Microsoft.AspNetCore.Components;
 
 namespace DeveloperPortfolio.Web.Pages
 {
-    public class CreateCategoryBase : ComponentBase
+    public class CreateTechBase : ComponentBase
     {
-        public CategoryDto CategoryDto = new CategoryDto();
+        public TechDto TechDto = new TechDto();
 
         [Inject]
-        public ICategoryService CategoryService { get; set; }
+        public ITechService TechService { get; set; }
 
-        protected async void CreateCategory_Submit()
+        protected async void CreateTech_Submit()
         {
             try
             {
-                await CategoryService.CreateCategory(CategoryDto);
+                await TechService.CreateTech(TechDto);
             }
             catch (Exception)
             {
