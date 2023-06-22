@@ -13,5 +13,8 @@ namespace DeveloperPortfolio.Api.Repositories.Contracts
         Task<IEnumerable<Link>> GetProjectLinks(int projectId);
         Task<Project> GetProject(int id);
         Task<IEnumerable<ProjectTechRelation>> GetAllProjectTechRelations();
+        Task<Project> CreateProject(ProjectDto projectDto);
+        Task<Project> UpdateProject(int id, ProjectDto projectDto);
+        Task<Project> DeleteProject(int id);
     }
 }

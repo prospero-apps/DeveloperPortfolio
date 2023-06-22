@@ -1,4 +1,5 @@
-﻿using DeveloperPortfolio.Api.Extensions;
+﻿using DeveloperPortfolio.Api.Entities;
+using DeveloperPortfolio.Api.Extensions;
 using DeveloperPortfolio.Api.Repositories.Contracts;
 using DeveloperPortfolio.Models.Dtos;
 using Microsoft.AspNetCore.Http;
@@ -70,6 +71,35 @@ namespace DeveloperPortfolio.Api.Controllers
                     var projectDto = project.ConvertToDto(category, techs, links, relations);
                     return Ok(projectDto);
                 }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ProjectDto>> CreateProject([FromBody] ProjectDto projectDto)
+        {
+            try
+            {
+                var newProject = await projectRepository.CreateProject(projectDto);
+
+                if (newProject == null)
+                {
+                    return NoContent();
+                }
+
+                var category = await categoryRepository.GetCategory(newProject.CategoryId);
+
+
+                var techs = await projectRepository.GetProjectTechs(newProject.Id);
+                var links = await projectRepository.GetProjectLinks(newProject.Id);
+                var relations = await projectRepository.GetAllProjectTechRelations();                               
+
+                var newProjectDto = newProject.ConvertToDto(category, techs, links, relations);
+
+                return CreatedAtAction(nameof(GetProject), new { id = newProjectDto.Id }, newProjectDto);
             }
             catch (Exception ex)
             {

@@ -6,5 +6,6 @@ namespace DeveloperPortfolio.Web.Services.Contracts
     {
         Task<IEnumerable<ProjectDto>> GetAllProjects();
         Task<ProjectDto> GetProject(int id);
+        Task<ProjectDto> CreateProject(ProjectDto projectDto);
     }
 }

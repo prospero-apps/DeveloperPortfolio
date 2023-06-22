@@ -3,6 +3,7 @@ using DeveloperPortfolio.Api.Entities;
 using DeveloperPortfolio.Api.Repositories.Contracts;
 using DeveloperPortfolio.Models.Dtos;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace DeveloperPortfolio.Api.Repositories
 {
@@ -79,6 +80,75 @@ namespace DeveloperPortfolio.Api.Repositories
         {
             var relations = await developerPortfolioDbContext.ProjectTechRelations.ToListAsync();
             return relations;
-        }        
+        }
+
+        public async Task<Project> CreateProject(ProjectDto projectDto)
+        {
+            var item = new Project
+            {
+                Name = projectDto.Name,
+                Description = projectDto.Description,
+                ImageUrl = projectDto.ImageUrl,
+                CategoryId = projectDto.CategoryId
+            };
+                       
+            if (item != null)
+            {
+                var result = await developerPortfolioDbContext.Projects.AddAsync(item);
+                await developerPortfolioDbContext.SaveChangesAsync();
+
+                // Handle techs
+                if (projectDto.Techs != null)
+                {
+                    var relations = new List<ProjectTechRelation>();
+
+                    foreach (var tech in projectDto.Techs)
+                    {
+                        relations.Add(new ProjectTechRelation
+                        {
+                            TechId = tech.Id,
+                            ProjectId = item.Id
+                        });
+                    }
+
+                    await developerPortfolioDbContext.AddRangeAsync(relations);
+                }
+
+                // Handle links
+                if (projectDto.Links != null)
+                {
+                    var links = new List<Link>();
+
+                    foreach (var link in projectDto.Links)
+                    {
+                        links.Add(new Link
+                        {
+                            Id = link.Id,
+                            Destination = link.Destination,
+                            DisplayText = link.DisplayText,
+                            Icon = link.Icon,
+                            ProjectId = item.Id
+                        });
+                    }
+
+                    await developerPortfolioDbContext.AddRangeAsync(links);
+                }
+
+                await developerPortfolioDbContext.SaveChangesAsync();
+                return result.Entity;
+            }
+
+            return null;
+        }
+
+        public Task<Project> UpdateProject(int id, ProjectDto projectDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Project> DeleteProject(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

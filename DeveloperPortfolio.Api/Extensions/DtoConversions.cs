@@ -78,7 +78,7 @@ namespace DeveloperPortfolio.Api.Extensions
                          }).ToList()
             };
         }
-
+              
         // Categories
         public static IEnumerable<CategoryDto> ConvertToDto(this IEnumerable<Category> categories)
         {

@@ -1,0 +1,12 @@
+﻿<h3>Link</h3>
+
+<div>
+    <span><strong>URL:</strong>&nbsp;@LinkDto.Destination</span>
+    <span><strong>Display Text:</strong>&nbsp;@LinkDto.DisplayText</span>
+    <span><strong>Icon:</strong>&nbsp;@LinkDto.Icon &nbsp;(<i class="@LinkDto.Icon"/>)</span> 
+</div>
+
+@code {
+    [Parameter]
+    public LinkDto LinkDto { get; set; }
+}

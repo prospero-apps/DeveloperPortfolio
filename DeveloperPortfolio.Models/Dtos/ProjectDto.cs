@@ -14,7 +14,7 @@ namespace DeveloperPortfolio.Models.Dtos
         public string ImageUrl { get; set; }
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
-        public List<TechDto> Techs { get; set; }
-        public List<LinkDto> Links { get; set; }
+        public List<TechDto>? Techs { get; set; }
+        public List<LinkDto>? Links { get; set; }
     }
 }

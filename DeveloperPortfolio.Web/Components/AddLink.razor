@@ -1,0 +1,45 @@
+﻿<h3>Add Link</h3>
+
+<EditForm Model="@LinkDto" OnSubmit="@AddLink_Submit" class="card card-body bg-light mt-5">
+    <div class="form-group row">
+        <label for="destination" class="col-md-2 col-form-label">URL:</label>
+        <div class="col-md-10">
+            <InputText id="destination" class="form-control" @bind-Value="LinkDto.Destination" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="displayText" class="col-md-2 col-form-label">Display Text:</label>
+        <div class="col-md-10">
+            <InputText id="displayText" class="form-control" @bind-Value="LinkDto.DisplayText" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="icon" class="col-md-2 col-form-label">Icon:</label>
+        <div class="col-md-10">
+            <InputText id="icon" class="form-control" @bind-Value="LinkDto.Icon" />
+        </div>
+    </div>    
+
+    <div class="form-group row">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</EditForm>
+
+@code {
+    public LinkDto LinkDto = new LinkDto();  
+
+    [Parameter]
+    public List<LinkDto> Links { get; set; }
+
+    [Parameter]
+    public EventCallback OnLinkAdded { get; set; }
+
+    protected async void AddLink_Submit()
+    {
+        Links.Add(LinkDto);
+        OnLinkAdded.InvokeAsync();
+    }
+}
+

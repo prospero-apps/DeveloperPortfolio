@@ -12,7 +12,7 @@ namespace DeveloperPortfolio.Web.Services
         {
             this.httpClient = httpClient;
         }
-                
+              
         public async Task<IEnumerable<ProjectDto>> GetAllProjects()
         {
             try
@@ -45,6 +45,33 @@ namespace DeveloperPortfolio.Web.Services
             try
             {
                 var response = await httpClient.GetAsync($"api/Project/{id}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return default(ProjectDto);
+                    }
+
+                    return await response.Content.ReadFromJsonAsync<ProjectDto>();
+                }
+                else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception(message);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<ProjectDto> CreateProject(ProjectDto projectDto)
+        {
+            try
+            {
+                var response = await httpClient.PostAsJsonAsync($"api/Project", projectDto);
 
                 if (response.IsSuccessStatusCode)
                 {
