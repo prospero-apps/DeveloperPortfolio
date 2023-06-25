@@ -2,9 +2,13 @@
 @inherits CreateProjectBase
 
 <h3>Create Project</h3>
-@if (Categories == null || Techs == null)
+@if ((Categories == null || Techs == null) && ErrorMessage == null)
 {
     <LoadingSpinner />
+}
+else if (ErrorMessage != null)
+{
+    <DisplayError ErrorMessage="@ErrorMessage"/>
 }
 else
 {
@@ -20,14 +24,7 @@ else
             <div class="col-md-10">
                 <InputText id="description" class="form-control" @bind-Value="ProjectDto.Description" />
             </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="imageUrl" class="col-md-2 col-form-label">Image URL:</label>
-            <div class="col-md-10">
-                <InputText id="imageUrl" class="form-control" @bind-Value="ProjectDto.ImageUrl" />
-            </div>
-        </div>
+        </div>      
 
         <div class="form-group row">
             <label for="category" class="col-md-2 col-form-label">Category:</label>
@@ -51,7 +48,7 @@ else
                 }
                 </select>                        
             </div>            
-        </div>
+        </div>        
 
         <div class="form-group row">
             <label for="linksDisplay" class="col-md-2 col-form-label">Links:</label>
@@ -76,8 +73,17 @@ else
                     <AddLink Links="@ProjectDto.Links" OnLinkAdded="RemoveAddLink"/>
                 </div>
             </div>
-        }                         
+        }
+             
+        <div class="form-group row">
+            <label for="imageUpload" class="col-md-2 col-form-label">Image:</label>
+            <div class="col-md-10">
+                <InputFile id="imageUpload" class="form-control" OnChange="@HandleImageUpload" />
+            </div>
+        </div>
 
+        <img src="@ImageDataUri" width="300" />
+        
         <div class="form-group row">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>

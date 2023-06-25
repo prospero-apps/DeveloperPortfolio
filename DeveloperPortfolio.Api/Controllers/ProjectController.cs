@@ -4,6 +4,7 @@ using DeveloperPortfolio.Api.Repositories.Contracts;
 using DeveloperPortfolio.Models.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 
 namespace DeveloperPortfolio.Api.Controllers
 {
@@ -13,15 +14,18 @@ namespace DeveloperPortfolio.Api.Controllers
     {
         private readonly IProjectRepository projectRepository;
         private readonly ICategoryRepository categoryRepository;
-        private readonly ITechRepository techRepository;        
+        private readonly ITechRepository techRepository;
+        private readonly IWebHostEnvironment env;
 
         public ProjectController(IProjectRepository projectRepository, ICategoryRepository categoryRepository,
-            ITechRepository techRepository)
+            ITechRepository techRepository, IWebHostEnvironment env)
         {
             this.projectRepository = projectRepository;
             this.categoryRepository = categoryRepository;
             this.techRepository = techRepository;
+            this.env = env;
         }
+                
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProjectDto>>> GetAllProjects()
@@ -77,6 +81,7 @@ namespace DeveloperPortfolio.Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
+               
 
         [HttpPost]
         public async Task<ActionResult<ProjectDto>> CreateProject([FromBody] ProjectDto projectDto)
@@ -90,12 +95,10 @@ namespace DeveloperPortfolio.Api.Controllers
                     return NoContent();
                 }
 
-                var category = await categoryRepository.GetCategory(newProject.CategoryId);
-
-
+                var category = await categoryRepository.GetCategory(newProject.CategoryId);  
                 var techs = await projectRepository.GetProjectTechs(newProject.Id);
                 var links = await projectRepository.GetProjectLinks(newProject.Id);
-                var relations = await projectRepository.GetAllProjectTechRelations();                               
+                var relations = await projectRepository.GetAllProjectTechRelations();
 
                 var newProjectDto = newProject.ConvertToDto(category, techs, links, relations);
 
@@ -105,6 +108,6 @@ namespace DeveloperPortfolio.Api.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
-        }
+        }               
     }
 }
