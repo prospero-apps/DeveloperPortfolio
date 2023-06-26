@@ -94,5 +94,24 @@ namespace DeveloperPortfolio.Web.Services
                 throw;
             }
         }
+
+        public async Task<TechDto> DeleteTech(int id)
+        {
+            try
+            {
+                var response = await httpClient.DeleteAsync($"api/Tech/{id}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadFromJsonAsync<TechDto>();
+                }
+
+                return default(TechDto);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

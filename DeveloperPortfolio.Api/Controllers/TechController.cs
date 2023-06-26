@@ -86,5 +86,27 @@ namespace DeveloperPortfolio.Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult<TechDto>> DeleteTech(int id)
+        {
+            try
+            {
+                var tech = await techRepository.DeleteTech(id);
+
+                if (tech == null)
+                {
+                    return NotFound();
+                }
+
+                var techDto = tech.ConvertToDto();
+
+                return Ok(techDto);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }            
+        }
     }
 }

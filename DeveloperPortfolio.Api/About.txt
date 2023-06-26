@@ -104,7 +104,9 @@
 
 42. Add the EditProjects page and the DisplayEditProjects component.
 
-43. 
+43. Add the methods and pages for the EditCategories and EditTechs pages and the pages themselves.
+
+44. 
 
 
 

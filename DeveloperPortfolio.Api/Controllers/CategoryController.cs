@@ -87,5 +87,27 @@ namespace DeveloperPortfolio.Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult<CategoryDto>> DeleteCategory(int id)
+        {
+            try
+            {
+                var category = await categoryRepository.DeleteCategory(id);
+
+                if (category == null)
+                {
+                    return NotFound();
+                }
+
+                var categoryDto = category.ConvertToDto();
+
+                return Ok(categoryDto);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }            
+        }
     }    
 }

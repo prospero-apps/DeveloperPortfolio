@@ -49,9 +49,17 @@ namespace DeveloperPortfolio.Api.Repositories
             return null;
         }
 
-        public Task<Tech> DeleteTech(int id)
+        public async Task<Tech> DeleteTech(int id)
         {
-            throw new NotImplementedException();
+            var item = await developerPortfolioDbContext.Techs.FindAsync(id);
+
+            if (item != null)
+            {                
+                developerPortfolioDbContext.Techs.Remove(item);
+                await developerPortfolioDbContext.SaveChangesAsync();
+            }
+
+            return item;
         }
                
         public Task<Tech> UpdateTech(int id, TechDto techDto)
@@ -59,6 +67,7 @@ namespace DeveloperPortfolio.Api.Repositories
             throw new NotImplementedException();
         }
 
+        // Helpers
         private async Task<bool> TechWithThisNameExists(string name)
         {
             return await developerPortfolioDbContext.Techs.AnyAsync(c => c.Name == name);

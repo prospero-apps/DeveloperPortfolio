@@ -49,9 +49,17 @@ namespace DeveloperPortfolio.Api.Repositories
             return null;
         }
 
-        public Task<Category> DeleteCategory(int id)
+        public async Task<Category> DeleteCategory(int id)
         {
-            throw new NotImplementedException();
+            var item = await developerPortfolioDbContext.Categories.FindAsync(id);
+
+            if (item != null)
+            {
+                developerPortfolioDbContext.Categories.Remove(item);
+                await developerPortfolioDbContext.SaveChangesAsync();
+            }
+
+            return item;
         }
             
         public Task<Category> UpdateCategory(int id, CategoryDto categoryDto)
@@ -59,6 +67,7 @@ namespace DeveloperPortfolio.Api.Repositories
             throw new NotImplementedException();
         }
 
+        // Helpers
         private async Task<bool> CategoryWithThisNameExists(string name)
         {
             return await developerPortfolioDbContext.Categories.AnyAsync(c => c.Name == name);

@@ -146,9 +146,31 @@ namespace DeveloperPortfolio.Api.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Project> DeleteProject(int id)
+        public async Task<Project> DeleteProject(int id)
         {
-            throw new NotImplementedException();
+            var item = await developerPortfolioDbContext.Projects.FindAsync(id);
+
+            if (item != null)
+            {
+                // Handle techs
+                var relations = await developerPortfolioDbContext.ProjectTechRelations
+                    .Where(p => p.ProjectId == id).ToListAsync();
+
+                developerPortfolioDbContext.RemoveRange(relations);
+
+                // Handle links
+                var links = await developerPortfolioDbContext.Links
+                    .Where(l => l.ProjectId == id).ToListAsync();   
+
+                developerPortfolioDbContext.RemoveRange(links);
+
+                // Handle the project itself
+                developerPortfolioDbContext.Projects.Remove(item);
+
+                await developerPortfolioDbContext.SaveChangesAsync();
+            }
+
+            return item;
         }
     }
 }

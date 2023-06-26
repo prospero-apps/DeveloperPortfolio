@@ -25,7 +25,7 @@ namespace DeveloperPortfolio.Api.Controllers
             this.techRepository = techRepository;
             this.env = env;
         }
-                
+
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProjectDto>>> GetAllProjects()
@@ -53,6 +53,63 @@ namespace DeveloperPortfolio.Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
+
+        [HttpGet]
+        [Route("GetProjectsByCategory/{categoryId}")]
+        public async Task<ActionResult<ProjectDto>> GetProjectsByCategory(int categoryId)
+        {
+            try
+            {
+                var projects = await projectRepository.GetProjectsByCategory(categoryId);
+                var categories = await categoryRepository.GetAllCategories();
+                var techs = await techRepository.GetAllTechs();
+                var links = await projectRepository.GetAllLinks();
+                var relations = await projectRepository.GetAllProjectTechRelations();
+
+                if (projects == null || categories == null || techs == null || links == null || relations == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    var projectDtos = projects.ConvertToDto(categories, techs, links, relations);
+                    return Ok(projectDtos);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("GetProjectsByTech/{techId}")]
+        public async Task<ActionResult<ProjectDto>> GetProjectsByTech(int techId)
+        {
+            try
+            {
+                var projects = await projectRepository.GetProjectsByCategory(techId);
+                var categories = await categoryRepository.GetAllCategories();
+                var techs = await techRepository.GetAllTechs();
+                var links = await projectRepository.GetAllLinks();
+                var relations = await projectRepository.GetAllProjectTechRelations();
+
+                if (projects == null || categories == null || techs == null || links == null || relations == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    var projectDtos = projects.ConvertToDto(categories, techs, links, relations);
+                    return Ok(projectDtos);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
 
         [HttpGet("{id:int}")]
         public async Task<ActionResult<ProjectDto>> GetProject(int id)
@@ -108,6 +165,33 @@ namespace DeveloperPortfolio.Api.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
-        }               
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult<ProjectDto>> DeleteProject(int id)
+        {
+            try
+            {
+                var project = await projectRepository.DeleteProject(id);
+
+                if (project == null)
+                {
+                    return NotFound();
+                }
+
+                var category = await categoryRepository.GetCategory(project.CategoryId);
+                var techs = await projectRepository.GetProjectTechs(project.Id);
+                var links = await projectRepository.GetProjectLinks(project.Id);
+                var relations = await projectRepository.GetAllProjectTechRelations();
+
+                var projectDto = project.ConvertToDto(category, techs, links, relations);
+
+                return Ok(projectDto);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
     }
 }

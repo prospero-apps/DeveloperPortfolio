@@ -93,5 +93,24 @@ namespace DeveloperPortfolio.Web.Services
                 throw;
             }
         }
+
+        public async Task<CategoryDto> DeleteCategory(int id)
+        {
+            try
+            {
+                var response = await httpClient.DeleteAsync($"api/Category/{id}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadFromJsonAsync<CategoryDto>();
+                }
+
+                return default(CategoryDto);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
