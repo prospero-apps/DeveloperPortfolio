@@ -102,7 +102,9 @@
 41. Add the CreateProject page, the AddLink and DisplayLink components and implement adding a new project 
 	in Api and Web.
 
-42. 
+42. Add the EditProjects page and the DisplayEditProjects component.
+
+43. 
 
 
 
