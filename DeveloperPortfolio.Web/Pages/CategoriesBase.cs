@@ -28,5 +28,11 @@ namespace DeveloperPortfolio.Web.Pages
                    where project.CategoryId == categoryId
                    select project;
         }
+
+        protected async Task DeleteCategory_Click(int id)
+        {
+            var categoryDto = await CategoryService.DeleteCategory(id);
+            Categories = Categories.Where(c => c.Id != id);
+        }
     }
 }

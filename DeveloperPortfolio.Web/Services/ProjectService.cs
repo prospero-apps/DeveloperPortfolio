@@ -13,7 +13,7 @@ namespace DeveloperPortfolio.Web.Services
             this.httpClient = httpClient;
         }
               
-        public async Task<IEnumerable<ProjectDto>> GetAllProjects()
+        public async Task<IEnumerable<ProjectDto>> GetAllProjects()        
         {
             try
             {

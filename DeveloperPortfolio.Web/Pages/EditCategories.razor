@@ -23,11 +23,19 @@ else
                 <h4>@category.Name</h4>
                 @if (projectCount == 0)
                 {
-                    <h4>(there are no projects in this category</h4>
+                    <h4>(there are no projects in this category)</h4>
                 }
                 else
                 {
                     <h4>(@projectCount project(s))</h4>
+                }
+
+                @if (projectCount == 0)
+                {
+                    <button @onclick="(() => DeleteCategory_Click(category.Id))"
+                            class="btn btn-danger">
+                        <i class="fa fa-trash" />
+                    </button>
                 }
             </div>
             <hr class="mb-3" />

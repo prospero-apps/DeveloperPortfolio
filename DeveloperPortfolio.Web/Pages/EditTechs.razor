@@ -29,6 +29,14 @@ else
                 {
                     <h4>(used in @projectCount project(s))</h4>
                 }
+
+                @if (projectCount == 0)
+                {
+                    <button @onclick="(() => DeleteTech_Click(tech.Id))"
+                            class="btn btn-danger">
+                        <i class="fa fa-trash" />
+                    </button>
+                }
             </div>
             <hr class="mb-3" />
         }

@@ -106,7 +106,9 @@
 
 43. Add the methods and pages for the EditCategories and EditTechs pages and the pages themselves.
 
-44. 
+44. Implement the functionality for deleting projects, categories and techs.
+
+45. 
 
 
 

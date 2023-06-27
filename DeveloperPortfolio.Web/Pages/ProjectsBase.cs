@@ -27,6 +27,6 @@ namespace DeveloperPortfolio.Web.Pages
         protected string GetCategoryName(IGrouping<int, ProjectDto> groupedProjectDtos)
         {
             return groupedProjectDtos.FirstOrDefault(p => p.CategoryId == groupedProjectDtos.Key).CategoryName;
-        }
+        }        
     }
 }

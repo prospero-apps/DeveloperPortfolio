@@ -1,4 +1,5 @@
 ﻿using DeveloperPortfolio.Models.Dtos;
+using DeveloperPortfolio.Web.Services;
 using DeveloperPortfolio.Web.Services.Contracts;
 using Microsoft.AspNetCore.Components;
 
@@ -25,6 +26,12 @@ namespace DeveloperPortfolio.Web.Pages
         protected IEnumerable<ProjectDto> GetProjectsWithThisTech(int techId)
         {
             return Projects.Where(p => p.Techs.Any(t => t.Id == techId)); 
+        }
+
+        protected async Task DeleteTech_Click(int id)
+        {
+            var techDto = await TechService.DeleteTech(id);
+            Techs = Techs.Where(t => t.Id != id);
         }
     }
 }
