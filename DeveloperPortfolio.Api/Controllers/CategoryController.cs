@@ -88,6 +88,28 @@ namespace DeveloperPortfolio.Api.Controllers
             }
         }
 
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<CategoryDto>> UpdateCategory(int id, CategoryDto categoryDto)
+        {
+            try
+            {
+                var category = await categoryRepository.UpdateCategory(id, categoryDto);
+
+                if (category == null)
+                {
+                    return NotFound();
+                }
+
+                var newCategoryDto = category.ConvertToDto();
+
+                return Ok(newCategoryDto);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<CategoryDto>> DeleteCategory(int id)
         {

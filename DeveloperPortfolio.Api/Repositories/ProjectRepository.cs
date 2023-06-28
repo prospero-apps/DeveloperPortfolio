@@ -141,9 +141,66 @@ namespace DeveloperPortfolio.Api.Repositories
             return null;
         }
 
-        public Task<Project> UpdateProject(int id, ProjectDto projectDto)
+        public async Task<Project> UpdateProject(int id, ProjectDto projectDto)
         {
-            throw new NotImplementedException();
+            var item = await developerPortfolioDbContext.Projects.FindAsync(id);
+            var projectRelations = await developerPortfolioDbContext.ProjectTechRelations
+                .Where(r => r.ProjectId == id).ToListAsync();
+            var projectLinks = await developerPortfolioDbContext.Links
+                .Where(l => l.ProjectId == id).ToListAsync();
+
+            developerPortfolioDbContext.ProjectTechRelations.RemoveRange(projectRelations);
+            developerPortfolioDbContext.Links.RemoveRange(projectLinks);
+            await developerPortfolioDbContext.SaveChangesAsync();
+
+            if (item != null)
+            {
+                item.Name = projectDto.Name;
+                item.Description = projectDto.Description;
+                item.ImageUrl = projectDto.ImageUrl;
+                item.CategoryId = projectDto.CategoryId;
+
+                // Handle techs
+                if (projectDto.Techs != null)
+                {
+                    var relations = new List<ProjectTechRelation>();
+
+                    foreach (var tech in projectDto.Techs)
+                    {
+                        relations.Add(new ProjectTechRelation
+                        {
+                            TechId = tech.Id,
+                            ProjectId = item.Id
+                        });
+                    }
+
+                    await developerPortfolioDbContext.AddRangeAsync(relations);
+                }
+
+                // Handle links
+                if (projectDto.Links != null)
+                {
+                    var links = new List<Link>();
+
+                    foreach (var link in projectDto.Links)
+                    {
+                        links.Add(new Link
+                        {
+                            Destination = link.Destination,
+                            DisplayText = link.DisplayText,
+                            Icon = link.Icon,
+                            ProjectId = item.Id
+                        });
+                    }
+
+                    await developerPortfolioDbContext.AddRangeAsync(links);
+                }
+
+                await developerPortfolioDbContext.SaveChangesAsync();
+                return item;
+            }        
+
+            return null;
         }
 
         public async Task<Project> DeleteProject(int id)

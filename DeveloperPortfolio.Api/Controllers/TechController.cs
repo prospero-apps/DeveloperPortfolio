@@ -87,6 +87,28 @@ namespace DeveloperPortfolio.Api.Controllers
             }
         }
 
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<TechDto>> UpdateTech(int id, TechDto techDto)
+        {
+            try
+            {
+                var tech = await techRepository.UpdateTech(id, techDto);
+
+                if (tech == null)
+                {
+                    return NotFound();
+                }
+
+                var newTechDto = tech.ConvertToDto();
+
+                return Ok(newTechDto);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<TechDto>> DeleteTech(int id)
         {

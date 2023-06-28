@@ -167,6 +167,33 @@ namespace DeveloperPortfolio.Api.Controllers
             }
         }
 
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<ProjectDto>> UpdateProject(int id, ProjectDto projectDto)
+        {
+            try
+            {
+                var project = await projectRepository.UpdateProject(id, projectDto);
+
+                if (project == null)
+                {
+                    return NotFound();
+                }
+
+                var category = await categoryRepository.GetCategory(project.CategoryId);
+                var techs = await projectRepository.GetProjectTechs(project.Id);
+                var links = await projectRepository.GetProjectLinks(project.Id);
+                var relations = await projectRepository.GetAllProjectTechRelations();
+
+                var newProjectDto = project.ConvertToDto(category, techs, links, relations);
+
+                return Ok(newProjectDto);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<ProjectDto>> DeleteProject(int id)
         {

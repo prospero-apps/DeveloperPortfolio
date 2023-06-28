@@ -9,6 +9,7 @@ namespace DeveloperPortfolio.Web.Services.Contracts
         Task<IEnumerable<ProjectDto>> GetProjectsByTech(int techId);
         Task<ProjectDto> GetProject(int id);
         Task<ProjectDto> CreateProject(ProjectDto projectDto);
+        Task<ProjectDto> UpdateProject(ProjectDto projectDto);
         Task<ProjectDto> DeleteProject(int id);
     }
 }

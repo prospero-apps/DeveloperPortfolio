@@ -62,9 +62,20 @@ namespace DeveloperPortfolio.Api.Repositories
             return item;
         }
             
-        public Task<Category> UpdateCategory(int id, CategoryDto categoryDto)
+        public async Task<Category> UpdateCategory(int id, CategoryDto categoryDto)
         {
-            throw new NotImplementedException();
+            var item = await developerPortfolioDbContext.Categories.FindAsync(id);
+
+            if (item != null)
+            {
+                item.Name = categoryDto.Name;
+                item.Icon = categoryDto.Icon;
+
+                await developerPortfolioDbContext.SaveChangesAsync();
+                return item;
+            }
+
+            return null;
         }
 
         // Helpers

@@ -1,18 +1,18 @@
-﻿@page "/CreateProject"
-@inherits CreateProjectBase
+﻿@page "/UpdateProject/{Id:int}"
+@inherits UpdateProjectBase
 
-<h3>Create Project</h3>
-@if ((Categories == null || Techs == null) && ErrorMessage == null)
+<h3>Update Project</h3>
+@if ((ProjectDto == null || Categories == null || Techs == null) && ErrorMessage == null)
 {
     <LoadingSpinner />
 }
 else if (ErrorMessage != null)
 {
-    <DisplayError ErrorMessage="@ErrorMessage"/>
+    <DisplayError ErrorMessage="@ErrorMessage" />
 }
 else
 {
-    <EditForm Model="@ProjectDto" OnSubmit="@CreateProject_Submit" class="card card-body bg-light mt-5">
+    <EditForm Model="@ProjectDto" OnSubmit="@UpdateProject_Submit" class="card card-body bg-light mt-5">
         <div class="form-group row">
             <label for="name" class="col-md-2 col-form-label">Name:</label>
             <div class="col-md-10">
@@ -24,7 +24,7 @@ else
             <div class="col-md-10">
                 <InputText id="description" class="form-control" @bind-Value="ProjectDto.Description" />
             </div>
-        </div>      
+        </div>
 
         <div class="form-group row">
             <label for="category" class="col-md-2 col-form-label">Category:</label>
@@ -39,24 +39,24 @@ else
         </div>
 
         <div class="form-group row">
-            <label for="technologies" class="col-md-2 col-form-label">Technologies:</label>                
+            <label for="technologies" class="col-md-2 col-form-label">Technologies:</label>
             <div class="col-md-10">
-                <select id="technologies" @bind="TechIds" multiple>
-                @foreach (var tech in Techs)
-                {
-                    <option value="@tech.Id">@tech.Name</option>
-                }
-                </select>                        
-            </div>            
-        </div>        
+                <select id="technologies" @bind="ProjectTechIds" multiple>
+                    @foreach (var tech in Techs)
+                    {
+                        <option value="@tech.Id">@tech.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
 
         <div class="form-group row">
             <label for="linksDisplay" class="col-md-2 col-form-label">Links:</label>
             <div class="col-md-10">
-                @foreach (var link in Links)
+                @foreach (var link in ProjectDto.Links)
                 {
                     <CascadingValue Value="this">
-                        <DisplayLink ProjectDto="@ProjectDto" LinkDto="@link" />
+                        <DisplayLink ProjectDto="@ProjectDto" LinkDto="@link"/>
                     </CascadingValue>
                 }
             </div>
@@ -72,11 +72,11 @@ else
         {
             <div class="form-group row">
                 <div class="col-md-10">
-                    <AddLink Links="@ProjectDto.Links" OnLinkAdded="RemoveAddLink"/>
+                    <AddLink Links="@ProjectDto.Links" OnLinkAdded="RemoveAddLink" />
                 </div>
             </div>
         }
-             
+
         <div class="form-group row">
             <label for="imageUpload" class="col-md-2 col-form-label">Image:</label>
             <div class="col-md-10">
@@ -85,11 +85,9 @@ else
         </div>
 
         <img src="@ImageDataUri" width="300" />
-        
+
         <div class="form-group row">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </EditForm>
 }
-
-

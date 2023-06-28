@@ -62,9 +62,20 @@ namespace DeveloperPortfolio.Api.Repositories
             return item;
         }
                
-        public Task<Tech> UpdateTech(int id, TechDto techDto)
+        public async Task<Tech> UpdateTech(int id, TechDto techDto)
         {
-            throw new NotImplementedException();
+            var item = await developerPortfolioDbContext.Techs.FindAsync(id);
+
+            if (item != null)
+            {
+                item.Name = techDto.Name;
+                item.Icon = techDto.Icon;
+
+                await developerPortfolioDbContext.SaveChangesAsync();
+                return item;
+            }
+
+            return null;
         }
 
         // Helpers

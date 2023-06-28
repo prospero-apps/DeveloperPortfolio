@@ -1,6 +1,8 @@
 ﻿using DeveloperPortfolio.Models.Dtos;
 using DeveloperPortfolio.Web.Services.Contracts;
+using Newtonsoft.Json;
 using System.Net.Http.Json;
+using System.Text;
 
 namespace DeveloperPortfolio.Web.Services
 {
@@ -106,6 +108,28 @@ namespace DeveloperPortfolio.Web.Services
                 }
 
                 return default(CategoryDto);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<CategoryDto> UpdateCategory(CategoryDto categoryDto)
+        {
+            try
+            {
+                var jsonRequest = JsonConvert.SerializeObject(categoryDto);
+                var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json-put+json");
+
+                var response = await httpClient.PutAsync($"api/Category/{categoryDto.Id}", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadFromJsonAsync<CategoryDto>();
+                }
+
+                return null;
             }
             catch (Exception)
             {

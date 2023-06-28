@@ -1,12 +1,38 @@
-﻿<h3>Link</h3>
+﻿@using DeveloperPortfolio.Web.Pages;
+<h3>Link</h3>
 
 <div>
     <span><strong>URL:</strong>&nbsp;@LinkDto.Destination</span>
     <span><strong>Display Text:</strong>&nbsp;@LinkDto.DisplayText</span>
     <span><strong>Icon:</strong>&nbsp;@LinkDto.Icon &nbsp;(<i class="@LinkDto.Icon"/>)</span> 
+
+    <button @onclick="(() => DeleteLink_Click())"
+            class="btn btn-danger" type="button">
+        <i class="fa fa-trash" />
+    </button>
 </div>
 
 @code {
     [Parameter]
     public LinkDto LinkDto { get; set; }
+
+    [Parameter]
+    public ProjectDto ProjectDto { get; set; }
+
+    [CascadingParameter]
+    public ComponentBase Parent { get; set; }
+
+    protected async Task DeleteLink_Click()
+    {        
+        ProjectDto.Links.Remove(LinkDto);
+
+        if (Parent is CreateProjectBase)
+        {
+            (Parent as CreateProjectBase).RefreshState();
+        }
+        else if (Parent is UpdateProjectBase)
+        {
+            (Parent as UpdateProjectBase).RefreshState();
+        }
+    }
 }

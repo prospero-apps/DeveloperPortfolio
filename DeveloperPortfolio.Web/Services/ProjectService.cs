@@ -1,6 +1,8 @@
 ﻿using DeveloperPortfolio.Models.Dtos;
 using DeveloperPortfolio.Web.Services.Contracts;
+using Newtonsoft.Json;
 using System.Net.Http.Json;
+using System.Text;
 
 namespace DeveloperPortfolio.Web.Services
 {
@@ -165,6 +167,28 @@ namespace DeveloperPortfolio.Web.Services
             {
                 throw;
             }
-        }        
+        }
+
+        public async Task<ProjectDto> UpdateProject(ProjectDto projectDto)
+        {
+            try
+            {
+                var jsonRequest = JsonConvert.SerializeObject(projectDto);
+                var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json-put+json");
+
+                var response = await httpClient.PutAsync($"api/Project/{projectDto.Id}", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadFromJsonAsync<ProjectDto>();
+                }
+
+                return null;
+            }
+            catch (Exception)
+            {
+                throw;
+            }            
+        }
     }
 }

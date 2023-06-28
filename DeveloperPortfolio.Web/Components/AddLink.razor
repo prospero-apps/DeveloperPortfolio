@@ -28,14 +28,14 @@
 </EditForm>
 
 @code {
-    public LinkDto LinkDto = new LinkDto();  
-
+    public LinkDto LinkDto = new LinkDto(); 
+    
     [Parameter]
     public List<LinkDto> Links { get; set; }
 
     [Parameter]
     public EventCallback OnLinkAdded { get; set; }
-
+    
     protected async void AddLink_Submit()
     {
         Links.Add(LinkDto);

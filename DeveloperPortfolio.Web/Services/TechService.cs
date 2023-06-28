@@ -1,6 +1,8 @@
 ﻿using DeveloperPortfolio.Models.Dtos;
 using DeveloperPortfolio.Web.Services.Contracts;
+using Newtonsoft.Json;
 using System.Net.Http.Json;
+using System.Text;
 
 namespace DeveloperPortfolio.Web.Services
 {
@@ -107,6 +109,28 @@ namespace DeveloperPortfolio.Web.Services
                 }
 
                 return default(TechDto);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<TechDto> UpdateTech(TechDto techDto)
+        {
+            try
+            {
+                var jsonRequest = JsonConvert.SerializeObject(techDto);
+                var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json-put+json");
+
+                var response = await httpClient.PutAsync($"api/Tech/{techDto.Id}", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadFromJsonAsync<TechDto>();
+                }
+
+                return null;
             }
             catch (Exception)
             {

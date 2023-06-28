@@ -7,6 +7,7 @@ namespace DeveloperPortfolio.Web.Services.Contracts
         Task<IEnumerable<CategoryDto>> GetAllCategories();
         Task<CategoryDto> GetCategory(int id);
         Task<CategoryDto> CreateCategory(CategoryDto categoryDto);
+        Task<CategoryDto> UpdateCategory(CategoryDto categoryDto);
         Task<CategoryDto> DeleteCategory(int id);
     }
 }

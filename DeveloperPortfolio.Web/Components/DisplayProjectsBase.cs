@@ -17,5 +17,11 @@ namespace DeveloperPortfolio.Web.Components
             var projectDto = await ProjectService.DeleteProject(id);
             Projects = Projects.Where(p => p.Id != id);
         }
+
+        protected async Task EditProject_Click(int id)
+        {
+            var projectDto = await ProjectService.GetProject(id);
+            await ProjectService.UpdateProject(projectDto);
+        }
     }
 }

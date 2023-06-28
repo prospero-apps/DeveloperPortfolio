@@ -108,7 +108,9 @@
 
 44. Implement the functionality for deleting projects, categories and techs.
 
-45. 
+45. Implement the functionality for updating projects, categories and techs.
+
+46. 
 
 
 
