@@ -1,0 +1,23 @@
+﻿@inherits CategoriesNavMenuBase
+
+@if(CategoryDtos == null && ErrorMessage == null)
+{
+    <LoadingSpinner/>
+}
+else if(ErrorMessage != null)
+{
+    <DisplayError ErrorMessage="@ErrorMessage"/>
+}
+else
+{
+    @foreach(var category in CategoryDtos)
+    {
+        var link = "/ProjectsByCategory/" + category.Id;
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="@link">
+                <span class="@category.Icon"></span>&nbsp;@category.Name
+            </NavLink>
+        </div>
+    }
+}

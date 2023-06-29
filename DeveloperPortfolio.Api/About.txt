@@ -112,7 +112,9 @@
 
 46. Implement navigation to the update pages.
 
-47. 
+47. Create nav links to the admin pages and to products by category.
+
+48. 
 
 
 
