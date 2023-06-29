@@ -11,7 +11,10 @@ namespace DeveloperPortfolio.Web.Components
         
         [Inject]
         public IProjectService ProjectService { get; set; }
-                
+
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
         protected async Task DeleteProject_Click(int id)
         {
             var projectDto = await ProjectService.DeleteProject(id);
@@ -20,8 +23,7 @@ namespace DeveloperPortfolio.Web.Components
 
         protected async Task EditProject_Click(int id)
         {
-            var projectDto = await ProjectService.GetProject(id);
-            await ProjectService.UpdateProject(projectDto);
+            NavigationManager.NavigateTo($"/UpdateProject/{id}");
         }
     }
 }

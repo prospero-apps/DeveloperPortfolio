@@ -35,8 +35,13 @@ else
                     <button @onclick="(() => DeleteTech_Click(tech.Id))"
                             class="btn btn-danger">
                         <i class="fa fa-trash" />
-                    </button>
+                    </button>                    
                 }
+
+                <button @onclick="(() => EditTech_Click(tech.Id))"
+                        class="btn btn-danger">
+                    Edit
+                </button>
             </div>
             <hr class="mb-3" />
         }

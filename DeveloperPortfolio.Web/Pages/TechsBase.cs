@@ -13,6 +13,9 @@ namespace DeveloperPortfolio.Web.Pages
         [Inject]
         public IProjectService ProjectService { get; set; }
 
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
         public IEnumerable<TechDto> Techs { get; set; }
         public IEnumerable<ProjectDto> Projects { get; set; }
 
@@ -32,6 +35,11 @@ namespace DeveloperPortfolio.Web.Pages
         {
             var techDto = await TechService.DeleteTech(id);
             Techs = Techs.Where(t => t.Id != id);
+        }
+
+        protected async Task EditTech_Click(int id)
+        {
+            NavigationManager.NavigateTo($"/UpdateTech/{id}");
         }
     }
 }

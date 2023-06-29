@@ -110,7 +110,9 @@
 
 45. Implement the functionality for updating projects, categories and techs.
 
-46. 
+46. Implement navigation to the update pages.
+
+47. 
 
 
 

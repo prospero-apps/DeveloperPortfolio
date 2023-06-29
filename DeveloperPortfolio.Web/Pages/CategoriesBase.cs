@@ -13,6 +13,9 @@ namespace DeveloperPortfolio.Web.Pages
         [Inject]
         public IProjectService ProjectService { get; set; }
 
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
         public IEnumerable<CategoryDto> Categories { get; set; }
         public IEnumerable<ProjectDto> Projects { get; set; }
         
@@ -33,6 +36,11 @@ namespace DeveloperPortfolio.Web.Pages
         {
             var categoryDto = await CategoryService.DeleteCategory(id);
             Categories = Categories.Where(c => c.Id != id);
+        }
+
+        protected async Task EditCategory_Click(int id)
+        {
+            NavigationManager.NavigateTo($"/UpdateCategory/{id}");
         }
     }
 }
