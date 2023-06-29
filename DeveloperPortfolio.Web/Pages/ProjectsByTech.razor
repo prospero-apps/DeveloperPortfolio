@@ -1,0 +1,20 @@
+﻿@page "/ProjectsByTech/{TechId:int}"
+@inherits ProjectsByTechBase
+
+@if (Projects == null && ErrorMessage == null)
+{
+    <LoadingSpinner />
+}
+else if (ErrorMessage != null)
+{
+    <DisplayError ErrorMessage="@ErrorMessage" />
+}
+else
+{
+    <h3>Technology: @TechName</h3>
+
+    @if (Projects.Count() > 0)
+    {
+        <DisplayProjects Projects="@Projects" />
+    }
+}

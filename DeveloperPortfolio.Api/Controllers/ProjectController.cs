@@ -88,7 +88,7 @@ namespace DeveloperPortfolio.Api.Controllers
         {
             try
             {
-                var projects = await projectRepository.GetProjectsByCategory(techId);
+                var projects = await projectRepository.GetProjectsByTech(techId);
                 var categories = await categoryRepository.GetAllCategories();
                 var techs = await techRepository.GetAllTechs();
                 var links = await projectRepository.GetAllLinks();

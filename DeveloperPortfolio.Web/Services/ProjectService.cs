@@ -46,7 +46,7 @@ namespace DeveloperPortfolio.Web.Services
         {
             try
             {
-                var response = await httpClient.GetAsync("api/Project/GetProjectsByCategory/{categoryId}");
+                var response = await httpClient.GetAsync($"api/Project/GetProjectsByCategory/{categoryId}");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -54,7 +54,7 @@ namespace DeveloperPortfolio.Web.Services
                     {
                         return Enumerable.Empty<ProjectDto>();
                     }
-
+                    
                     return await response.Content.ReadFromJsonAsync<IEnumerable<ProjectDto>>();
                 }
                 else
@@ -73,7 +73,7 @@ namespace DeveloperPortfolio.Web.Services
         {
             try
             {
-                var response = await httpClient.GetAsync("api/Project/GetProjectsByTech/{techId}");
+                var response = await httpClient.GetAsync($"api/Project/GetProjectsByTech/{techId}");
 
                 if (response.IsSuccessStatusCode)
                 {

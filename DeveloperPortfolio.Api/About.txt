@@ -114,7 +114,9 @@
 
 47. Create nav links to the admin pages and to products by category.
 
-48. 
+48. Implement filtering projects by category and by technology.
+
+49. 
 
 
 

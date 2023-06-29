@@ -1,0 +1,21 @@
+﻿@page "/ProjectsByCategory/{CategoryId:int}"
+@inherits ProjectsByCategoryBase
+
+@if (Projects == null && ErrorMessage == null)
+{
+    <LoadingSpinner/>
+}
+else if (ErrorMessage != null)
+{
+    <DisplayError ErrorMessage="@ErrorMessage" />
+}
+else
+{
+    <h3>Category: @CategoryName</h3>
+
+    @if(Projects.Count() > 0)
+    {
+        <DisplayProjects Projects="@Projects"/>
+    }
+}
+
