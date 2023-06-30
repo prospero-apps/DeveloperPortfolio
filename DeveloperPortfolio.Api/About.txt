@@ -116,7 +116,9 @@
 
 48. Implement filtering projects by category and by technology.
 
-49. 
+49. Create the Admin page, accessible only by typing Admin in the searchbar. 
+
+50. 
 
 
 
