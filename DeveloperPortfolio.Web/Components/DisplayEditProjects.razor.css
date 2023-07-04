@@ -1,0 +1,9 @@
+﻿img {
+    height: 220px;
+    width: 90%;
+    object-fit: contain;
+    align-self: center;
+    margin-top: 10px;
+    border: none;
+}
+

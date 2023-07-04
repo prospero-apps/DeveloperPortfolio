@@ -19,29 +19,42 @@ else
             var projectCount = projects.Count();
 
             <div class="row mt-3">
-                <i class="@tech.Icon"/>
-                <h4>@tech.Name</h4>
-                @if (projectCount == 0)
-                {
-                    <h4>(no project uses this technology)</h4>
-                }
-                else
-                {
-                    <h4>(used in @projectCount project(s))</h4>
-                }
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-start gap-3 fs-5">
+                        <i class="@tech.Icon"/>
+                        <div class="d-flex flex-column">
+                            <h4>@tech.Name</h4>
+                    
+                            @if (projectCount == 0)
+                            {
+                                <h5>(no project uses this technology)</h5>
+                            }
+                            else if (projectCount == 1)
+                            {
+                                <h5>(used in @projectCount project)</h5>
+                            }
+                            else
+                            {
+                                <h5>(used in @projectCount projects)</h5>
+                            }
+                        </div>
+                    </div>
 
-                @if (projectCount == 0)
-                {
-                    <button @onclick="(() => DeleteTech_Click(tech.Id))"
-                            class="btn btn-danger">
-                        <i class="fa fa-trash" />
-                    </button>                    
-                }
+                    <div class="d-flex justify-content-start gap-2">
+                        @if (projectCount == 0)
+                        {
+                            <button @onclick="(() => DeleteTech_Click(tech.Id))"
+                                    class="btn btn-danger h-50">
+                                <i class="fa fa-trash" />
+                            </button>                    
+                        }
 
-                <button @onclick="(() => EditTech_Click(tech.Id))"
-                        class="btn btn-danger">
-                    Edit
-                </button>
+                        <button @onclick="(() => EditTech_Click(tech.Id))"
+                                class="btn btn-dark h-50">
+                            Edit
+                        </button>
+                    </div>
+                </div>
             </div>
             <hr class="mb-3" />
         }

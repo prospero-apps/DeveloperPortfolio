@@ -2,14 +2,26 @@
     text-decoration: none;
 }
 
-a:hover .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    transition: box-shadow 0.3s ease-in-out;
-}
+    a:hover .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        transition: box-shadow 0.3s ease-in-out;
+    }
 
 .card {
     transition: box-shadow 0.3s ease-in-out;
     overflow: hidden;
+    color: black;
+    height: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 a:hover img {
@@ -19,4 +31,40 @@ a:hover img {
 
 img {
     transition: 0.5s ease-in-out;
+    height: 220px;
+    width: 90%;
+    object-fit: contain;
+    align-self: center;
+    margin-top: 10px;
+    border: none;
+}
+
+@keyframes rotate-icon {
+    from {
+        transform: rotate(0deg)
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.tech-icons,
+.link-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: 25px;
+}
+
+    .single-icon:hover {
+        animation-name: rotate-icon;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+
+.click-info {
+    font-size: 0.8em;
+    margin-top: 1em;
 }

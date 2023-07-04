@@ -9,7 +9,7 @@ main {
 }
 
 .sidebar {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    background-image: linear-gradient(180deg, #191970 0%, #191970 0% 40%, #800000 100%);
 }
 
 .top-row {
@@ -21,20 +21,91 @@ main {
     align-items: center;
 }
 
-    .top-row ::deep a, .top-row ::deep .btn-link {
-        white-space: nowrap;
-        margin-left: 1.5rem;
+.top-row ::deep a, .top-row ::deep .btn-link {
+    white-space: nowrap;
+    margin-left: 1.5rem;
+    text-decoration: none;
+}
+
+.top-row ::deep a:hover, .top-row ::deep .btn-link:hover {
+    text-decoration: underline;
+}
+
+.top-row ::deep a:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* CUSTOM STYLES */
+
+/* HEADER */
+.header {
+    background-color: beige;
+    height: 350px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-top: 2em;
+    box-shadow: 4px 4px 6px gray;
+}
+
+@keyframes rotate-personal-info {
+    0% {transform: rotate(1.5deg) translateY(-2em);}
+    50% {transform: rotate(-1.5deg) translateY(-2em);}
+    100% {transform: rotate(1.5deg) translateY(-2em);}
+}
+
+.personal-info {
+    background-color: white;
+    margin: 1em;
+    margin-top: 2em;
+    padding: 0.5em;
+    box-shadow: 2px 2px 3px gray;
+    display: flex;
+    flex-direction: column;
+    transform: rotate(1.5deg) translateY(-2em);
+    min-width: 500px;
+    animation-name: rotate-personal-info;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+    .personal-info:hover {
+        animation-play-state: paused;
+    }
+
+
+    .personal-info-main {
+        display: flex;
+    }
+
+.personal-info-image {
+    align-self: flex-end;
+}
+
+.personal-info p,
+.personal-info h2 {
+    margin: 0.3em;
+}
+
+.personal-info-links a {
+    text-decoration: none;
+}
+
+    .personal-info-links a:hover {
         text-decoration: none;
+        font-weight: bolder;
     }
 
-    .top-row ::deep a:hover, .top-row ::deep .btn-link:hover {
-        text-decoration: underline;
-    }
+.face-image {
+    width: 160px;
+    padding: 20px;
+}
 
-    .top-row ::deep a:first-child {
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+.github-icon {
+    color: black;
+}
 
 @media (max-width: 640.98px) {
     .top-row:not(.auth) {

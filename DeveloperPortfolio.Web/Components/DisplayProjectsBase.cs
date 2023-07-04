@@ -1,6 +1,7 @@
 ﻿using DeveloperPortfolio.Models.Dtos;
 using DeveloperPortfolio.Web.Services.Contracts;
 using Microsoft.AspNetCore.Components;
+using System.ComponentModel.DataAnnotations;
 
 namespace DeveloperPortfolio.Web.Components
 {
@@ -24,6 +25,12 @@ namespace DeveloperPortfolio.Web.Components
         protected async Task EditProject_Click(int id)
         {
             NavigationManager.NavigateTo($"/UpdateProject/{id}");
+        }
+
+        protected string ShortenDescription(string description, int length)
+        {
+            string shortDescription = description.Length < length ? description : description[0..length] + "...";
+            return shortDescription;
         }
     }
 }

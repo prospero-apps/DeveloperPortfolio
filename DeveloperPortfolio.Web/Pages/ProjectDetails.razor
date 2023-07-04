@@ -11,31 +11,29 @@ else if (ErrorMessage != null)
 }
 else
 {
-    <h3 class="mb-5">@Project.Name</h3>
+    <h1 class="mb-5">@Project.Name</h1>
     <div class="row">
         <div class="col-md-6 mb-4">
             <img class="img-fluid" src="@Project.ImageUrl">
         </div>
         <div class="col-md-6">
             <p class="mb-4">@Project.Description</p>
-            <p class="mb-4">Technologies used:</p>
-            <div>
+            <h3 class="mb-4">Technologies used in this project:</h3>
+            <div class="techs">
                 @foreach (var tech in Project.Techs)
                 {
-                    <div>
-                        <i class="@tech.Icon"/>
-                        <p>@tech.Name</p>
+                    <div class="tech">
+                        <span><i class="@tech.Icon" />@tech.Name</span>
                     </div>
                 }
             </div>
-            <p class="mb-4">Useful links related to this project:</p>
+            <h3 class="mb-4">Useful links related to this project:</h3>
             <div>
                 @foreach (var link in Project.Links)
-                {
-                    <div>
-                        <a href="@link.Destination">
-                            <i class="@link.Icon" />
-                            <p>@link.DisplayText</p>
+                {                
+                    <div class="link">
+                        <a href="@link.Destination" target="_blank">
+                            <span><i class="@link.Icon" />@link.DisplayText</span>
                         </a>
                     </div>
                 }

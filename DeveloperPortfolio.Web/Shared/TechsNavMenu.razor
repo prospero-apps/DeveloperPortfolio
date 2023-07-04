@@ -1,24 +1,32 @@
 ﻿@inherits TechsNavMenuBase
 
-@if (TechDtos == null && ErrorMessage == null)
-{
-    <LoadingSpinner />
-}
-else if (ErrorMessage != null)
-{
-    <DisplayError ErrorMessage="@ErrorMessage" />
-}
-else
-{
-    @foreach (var tech in TechDtos)
+<div class="side-menu">
+    @if (TechDtos == null && ErrorMessage == null)
     {
-        var link = "/ProjectsByTech/" + tech.Id;
+        <LoadingSpinner />
+    }
+    else if (ErrorMessage != null)
+    {
+        <DisplayError ErrorMessage="@ErrorMessage" />
+    }
+    else
+    {
+        <h3 class="side-header">Technologies</h3>
+        <div class="side-scroll">
+            @foreach (var tech in TechDtos)
+            {
+                var link = "/ProjectsByTech/" + tech.Id;
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="@link">
-                <span class="@tech.Icon"></span>&nbsp;@tech.Name
-            </NavLink>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="@link">
+                        <div class="side-item">
+                            <i class="@tech.Icon"></i>
+                            <p>@tech.Name</p>
+                        </div>
+                    </NavLink>
+                </div>
+            }
         </div>
     }
-}
+</div>
 

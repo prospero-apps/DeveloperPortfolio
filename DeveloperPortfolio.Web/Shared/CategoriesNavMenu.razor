@@ -1,23 +1,31 @@
 ﻿@inherits CategoriesNavMenuBase
 
-@if(CategoryDtos == null && ErrorMessage == null)
-{
-    <LoadingSpinner/>
-}
-else if(ErrorMessage != null)
-{
-    <DisplayError ErrorMessage="@ErrorMessage"/>
-}
-else
-{
-    @foreach(var category in CategoryDtos)
+<div class="side-menu">
+    @if(CategoryDtos == null && ErrorMessage == null)
     {
-        var link = "/ProjectsByCategory/" + category.Id;
+        <LoadingSpinner/>
+    }
+    else if(ErrorMessage != null)
+    {
+        <DisplayError ErrorMessage="@ErrorMessage"/>
+    }
+    else
+    {
+        <h3 class="side-header">Categories</h3>
+        <div class="side-scroll">
+            @foreach(var category in CategoryDtos)
+            {
+                var link = "/ProjectsByCategory/" + category.Id;
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="@link">
-                <span class="@category.Icon"></span>&nbsp;@category.Name
-            </NavLink>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="@link">
+                        <div class="side-item">
+                            <i class="@category.Icon"></i>
+                            <p>@category.Name</p>
+                        </div>                        
+                    </NavLink>
+                </div>
+            }
         </div>
     }
-}
+</div>

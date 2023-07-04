@@ -118,7 +118,7 @@
 
 49. Create the Admin page, accessible only by typing Admin in the searchbar. 
 
-50. 
+50. Add styles.
 
 
 
