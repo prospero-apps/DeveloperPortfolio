@@ -120,5 +120,7 @@
 
 50. Add styles.
 
+51. Add links to social media and contact info.
 
+52. 
 
