@@ -15,8 +15,9 @@ namespace DeveloperPortfolio.Web
             builder.RootComponents.Add<App>("#app");
             builder.RootComponents.Add<HeadOutlet>("head::after");
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7110/") });
-
+            //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7110/") });
+            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://developerportfolioapi.azurewebsites.net/") });
+            
             builder.Services.AddScoped<IProjectService, ProjectService>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<ITechService, TechService>();

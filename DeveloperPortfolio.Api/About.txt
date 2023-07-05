@@ -126,3 +126,6 @@
 
 53.
 
+
+
+Data Source=tcp:developerportfolio-apidbserver.database.windows.net,1433;Initial Catalog=DeveloperPortfolio.Api_db;User Id=prospero@developerportfolio-apidbserver;Password=kmW54cth
