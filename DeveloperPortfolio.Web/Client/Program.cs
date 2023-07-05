@@ -1,6 +1,7 @@
 using DeveloperPortfolio.Web;
 using DeveloperPortfolio.Web.Services;
 using DeveloperPortfolio.Web.Services.Contracts;
+using DeveloperPortfolio.Web.Shared;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 

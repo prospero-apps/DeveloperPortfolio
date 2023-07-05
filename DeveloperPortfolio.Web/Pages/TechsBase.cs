@@ -19,7 +19,6 @@ namespace DeveloperPortfolio.Web.Pages
         public IEnumerable<TechDto> Techs { get; set; }
         public IEnumerable<ProjectDto> Projects { get; set; }
 
-
         protected override async Task OnInitializedAsync()
         {
             Techs = await TechService.GetAllTechs();

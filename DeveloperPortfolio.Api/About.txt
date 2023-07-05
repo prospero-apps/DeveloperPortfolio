@@ -122,5 +122,7 @@
 
 51. Add links to social media and contact info.
 
-52. 
+52. Style the links info in the CreateProject and UpdateProject components.
+
+53.
 

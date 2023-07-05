@@ -1,4 +1,5 @@
 ﻿using DeveloperPortfolio.Models.Dtos;
+using DeveloperPortfolio.Web.Pages;
 using DeveloperPortfolio.Web.Services.Contracts;
 using Microsoft.AspNetCore.Components;
 using System.ComponentModel.DataAnnotations;
@@ -9,7 +10,10 @@ namespace DeveloperPortfolio.Web.Components
     {
         [Parameter]
         public IEnumerable<ProjectDto> Projects { get; set; }
-        
+
+        [CascadingParameter]
+        public EditProjectsBase Parent { get; set; }
+
         [Inject]
         public IProjectService ProjectService { get; set; }
 
@@ -19,7 +23,8 @@ namespace DeveloperPortfolio.Web.Components
         protected async Task DeleteProject_Click(int id)
         {
             var projectDto = await ProjectService.DeleteProject(id);
-            Projects = Projects.Where(p => p.Id != id);
+            var remainingProjects = Parent.Projects.Where(p => p.Id != id).ToList();   
+            Parent.RefreshState(remainingProjects);
         }
 
         protected async Task EditProject_Click(int id)

@@ -1,6 +1,8 @@
 ﻿using DeveloperPortfolio.Models.Dtos;
 using DeveloperPortfolio.Web.Services.Contracts;
+using DeveloperPortfolio.Web.Shared;
 using Microsoft.AspNetCore.Components;
+using System.Collections.Specialized;
 using System.ComponentModel.Design.Serialization;
 
 namespace DeveloperPortfolio.Web.Pages
@@ -14,15 +16,14 @@ namespace DeveloperPortfolio.Web.Pages
         public IProjectService ProjectService { get; set; }
 
         [Inject]
-        public NavigationManager NavigationManager { get; set; }
-
+        public NavigationManager NavigationManager { get; set; }              
         public IEnumerable<CategoryDto> Categories { get; set; }
-        public IEnumerable<ProjectDto> Projects { get; set; }
-        
+        public IEnumerable<ProjectDto> Projects { get; set; }     
+
         protected override async Task OnInitializedAsync()
         {
             Categories = await CategoryService.GetAllCategories();
-            Projects = await ProjectService.GetAllProjects();
+            Projects = await ProjectService.GetAllProjects();            
         }
 
         protected IEnumerable<ProjectDto> GetProjectsInThisCategory(int categoryId)
@@ -35,7 +36,7 @@ namespace DeveloperPortfolio.Web.Pages
         protected async Task DeleteCategory_Click(int id)
         {
             var categoryDto = await CategoryService.DeleteCategory(id);
-            Categories = Categories.Where(c => c.Id != id);
+            Categories = Categories.Where(c => c.Id != id);            
         }
 
         protected async Task EditCategory_Click(int id)

@@ -1,5 +1,6 @@
 ﻿@page "/EditProjects"
-@inherits ProjectsBase
+@*@inherits ProjectsBase*@
+@inherits EditProjectsBase
 
 @if (Projects == null)
 {
@@ -18,7 +19,9 @@ else
             <h4>@GetCategoryName(group) (@group.Count())</h4>
 
             <div class="row mt-3">
-                <DisplayEditProjects Projects="@group"></DisplayEditProjects>
+                <CascadingValue Value="this">
+                    <DisplayEditProjects Projects="@group"></DisplayEditProjects>
+                </CascadingValue>                
             </div>
             <hr class="mb-3" />
         }
