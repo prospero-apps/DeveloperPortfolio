@@ -38,7 +38,9 @@ namespace DeveloperPortfolio.Api
             }
 
             app.UseCors(policy =>
-                policy.WithOrigins("http://localhost:7295", "https://localhost:7295")
+                policy.WithOrigins("http://localhost:7295", "https://localhost:7295",
+                "http://victorious-coast-047c61a10.3.azurestaticapps.net",
+                "https://victorious-coast-047c61a10.3.azurestaticapps.net")
                 .AllowAnyMethod()
                 .WithHeaders(HeaderNames.ContentType)
             );
