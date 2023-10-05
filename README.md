@@ -79,5 +79,3 @@ I also created a LoadingSpinner component that you can see while the data is bei
 There is an Admin page that is supposed to be used only by me. If you want to look at it, just go to the “/Admin” address in the searchbar. There is no link to it. The Admin page enables me to manage the app. 
 
 The API project is deployed to Azure App Service and the Blazor WebAssembly project is deployed to Azure Static Web Apps.
-
-To see it live, go to https://victorious-coast-047c61a10.3.azurestaticapps.net/
